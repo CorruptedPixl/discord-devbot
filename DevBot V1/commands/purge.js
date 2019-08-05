@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const {msgDeleteDelay} = require('../config.json');
+const {msgDeleteDelay, prefix} = require('../config.json');
 
 module.exports.run = async (client, message, args) => {
 
@@ -7,7 +7,7 @@ module.exports.run = async (client, message, args) => {
     messageDeleteAmount = parseInt(args[0]);                                                        //Sets a variable of amt of msg to delete to use later. Also converts the string from args[0] to a number to be able to add 1 to delete the "!purge" message itself too
     messageDeleteAmount = messageDeleteAmount + 1;
 
-    if (messageDeleteAmount <= 0){                                                              //Handles an error if the user enters a negative value or 0
+    if (messageDeleteAmount <= 0){                                                                  //Handles an error if the user enters a negative value or 0
         console.log(typeof(messageDeleteAmount))
         console.log(messageDeleteAmount)
         console.log("1")
@@ -32,10 +32,10 @@ module.exports.run = async (client, message, args) => {
         console.log(typeof(messageDeleteAmount))
         console.log(messageDeleteAmount)
         console.log("3")
-        message.channel.bulkDelete(messageDeleteAmount);                                        //This actually deletes the messages
+        message.channel.bulkDelete(messageDeleteAmount);                                            //This actually deletes the messages
     }
     
-    else{                                                                                         //We check if the datatype of the arg is indeed a number, if not, return an error
+    else{                                                                                           //We check if the datatype of the arg is indeed a number, if not, return an error
     console.log(typeof(messageDeleteAmount))
     console.log(messageDeleteAmount)
     console.log("4")
@@ -46,5 +46,6 @@ module.exports.run = async (client, message, args) => {
 }}
 
 module.exports.help = {
-    name: "purge"
+    name: "purge",
+    description: `Use \`${prefix}purge x\`to delete x amount of messages. Max 100 at a time.`
 }

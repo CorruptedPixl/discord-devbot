@@ -39,8 +39,8 @@ client.once('ready', () => {
 
 client.on('message', message => {
 
-	if (!message.content.startsWith(prefix) || message.author.bot) return; 					//ignores messages that don't start with the prefix or messages that the bot itself sends
-	if (message.channel.type === "dm") return;												//ignores dm's
+	if (!message.content.startsWith(prefix) || message.author.bot) return; 					//Ignores messages that don't start with the prefix or messages that the bot itself sends
+	if (message.channel.type === "dm") return;												//Ignores dm's
 
 	// const args = message.content.slice(prefix.length).split(' ');							//This splits the args and puts them in an array (From before the command handler, this is deprecated and will be removed later)
 	// const command = args.shift().toLowerCase();
@@ -54,15 +54,7 @@ client.on('message', message => {
 
 
 	if (message.content.startsWith(`${prefix}db`)) {
-		message.channel.send('dbrand bot, dbrand BOT!');
-
-		let dbEmbed = new Discord.RichEmbed()
-			.setDescription("***dbrand***")
-			.setColor("#ffbb00")
-			.addField("dbrand bot", "***dbrand bot***")
-			.addField("Message sent in", message.channel)
-			.addField("Time", message.createdAt)
-	message.channel.send(dbEmbed)
+		
 	}
 
 	

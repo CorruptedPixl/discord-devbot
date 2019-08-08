@@ -10,35 +10,64 @@ module.exports.run = async (client, message, args) => {
     //     .addField("Time", message.createdAt)
     //message.channel.send(dbEmbed)
 
-    let dbEmbed = new Discord.RichEmbed()
-	.setColor('#ffbb00')
-	.setTitle('dbrand.com')
-	.setURL(link)
-	.setThumbnail('https://i.imgur.com/wSTFkRM.png')
-	.addField('Regular field title', 'Some value here')
-	.addBlankField()
-	.addField('Inline field title', 'Some value here', true)
-	.addField('Inline field title', 'Some value here', true)
-	.addField('Inline field title', 'Some value here', true)
-	.setImage('attachment://../assets/1_50FPS.gif')
-	.setFooter('Some footer text here', 'https://i.imgur.com/wSTFkRM.png');
-
-
-
 
     let link = "https://dbrand.com/";
     let arrayLength = args.length;
 
+
+
     console.log(arrayLength);
 
     if (arrayLength == 0){
-        message.channel.send(dbEmbedLink)
+        
     }
 
+    else if (arrayLength == 1){
 
-    if (args[0] == "grip"){
-        link = link + "shop/grip/";
+        if (args[0] == "grip" || args[0] == "g"){                                                                               //Set link to grip
+            link = link + "shop/grip/#grip-devices";
+            message.channel.bulkDelete(1);
+            console.log(link);
+        }
+    
+        if (args[0] == "help" || args[0] == "contact" || args[0] == "support" || args[0] == "h" || args[0] == "c"){             //Set link to support
+            link = link + "contact";
+            message.channel.bulkDelete(1);
+        }
+        
+        if (args[0] == "skins" || args[0] == "s"){                                                                              //Set link to skins
+            link = link + "shop/skins";
+            message.channel.bulkDelete(1);
+        }
+
+
+        let dbEmbedLink = new Discord.RichEmbed()
+        .setColor('#ffbb00')
+        .setTitle(link)
+        .setURL(link)
+        .setDescription(link)
+        .setThumbnail('attachment://1_50FPS.gif')
+        .addField('Regular field title', 'Some value here')
+        .addBlankField()
+        .addField('Inline field title', 'Some value here', true)
+        .addField('Inline field title', 'Some value here', true)
+        .attachFiles(['../DevBot V1/commands/assets/1_50FPS.gif'])
+        .setImage('attachment://1_50FPS.gif')
+        .setTimestamp()
+        .setFooter('Some footer text here', 'attachment://./assets/1_50FPS.gif')
+    
+
+        message.channel.send(dbEmbedLink);
     }
+    
+    else{
+        message.channel.bulkDelete(1);
+        message.channel.send(`Invalid command, please try again ${message.member}`)
+        .then(msg => {
+            msg.delete(msgDeleteDelay)
+        });
+    }
+    
 }
 
 

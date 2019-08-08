@@ -5,23 +5,31 @@ const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
 
-fs.readdir("./commands/", (err, files) => {
+// fs.readdir("./commands/", (err, files) => {
 	
-	if (err) console.log(err);
+// 	if (err) console.log(err);
 
-	let jsfile = files.filter(f => f.split(".") .pop = "js");
+// 	let jsfile = files.filter(f => f.split(".") .pop = "js");
 
-	if (jsfile.length <= 0) {
-		console.log("Couldn't find commands.");
-		return;
-	}
+// 	if (jsfile.length <= 0) {
+// 		console.log("Couldn't find commands.");
+// 		return;
+// 	}
 
-	jsfile.forEach((file,amount) => {
-		let properties = require(`./commands/${file}`);
-		console.log(`${file} loaded!`);
-		client.commands.set(properties.help.name, properties);
-	});
-});
+// 	jsfile.forEach((file,amount) => {
+// 		let properties = require(`./commands/${file}`);
+// 		console.log(`${file} loaded!`);
+// 		client.commands.set(properties.help.name, properties);
+// 	});
+// });
+
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+
+for (const file of commandFiles) {
+	let command = require(`./commands/${file}`);
+	console.log(`${file} loaded!`);
+	client.commands.set(command.help.name, command);
+}
 
 client.once('ready', () => {
 	console.log('This bitch ready!');														//sends a message when the bot is ready
@@ -42,22 +50,27 @@ client.on('message', message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return; 					//Ignores messages that don't start with the prefix or messages that the bot itself sends
 	if (message.channel.type === "dm") return;												//Ignores dm's
 
-	// const args = message.content.slice(prefix.length).split(' ');							//This splits the args and puts them in an array (From before the command handler, this is deprecated and will be removed later)
-	// const command = args.shift().toLowerCase();
-
-	let messageArray = message.content.split(" ");
-	let cmd = messageArray[0];
-	let args = messageArray.slice(1);
-  
-	let commandfile = client.commands.get(cmd.slice(prefix.length));
-	if(commandfile) commandfile.run(client,message,args);
-
-
-	if (message.content.startsWith(`${prefix}db`)) {
-		
-	}
+	const args = message.content.slice(prefix.length).split(" ");
+	const command = args.shift().toLowerCase();
 
 	
+	if (!client.commands.has(command)) return;
+
+	try {
+		client.commands.get(command).run(client, message, args);
+	} catch (error) {
+		console.error(error);
+		message.reply('there was an error trying to execute that command!');
+	}
+	
+	
+	// let messageArray = message.content.split(" ");
+	// let cmd = messageArray[0];
+	// let args = messageArray.slice(1);
+  
+	// let commandfile = client.commands.get(cmd.slice(prefix.length));
+	// if(commandfile) commandfile.run(client,message,args);
+
 });
 
 

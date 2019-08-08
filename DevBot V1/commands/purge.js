@@ -4,8 +4,8 @@ const {msgDeleteDelay, prefix} = require('../config.json');
 module.exports.run = async (client, message, args) => {
 
     let messageDeleteAmount = args[0];                                                              //We store the args in a variable to use later
-    messageDeleteAmount = parseInt(args[0]);                                                        //Sets a variable of amt of msg to delete to use later. Also converts the string from args[0] to a number to be able to add 1 to delete the "!purge" message itself too
-    messageDeleteAmount = messageDeleteAmount + 1;
+    messageDeleteAmount = parseInt(args[0]);                                                        //We clean the user input in order to avoid exploits. We convert the input to a number, thus invalidating code injection exploits.
+    messageDeleteAmount = messageDeleteAmount + 1;                                                  //We add 1 to the amount to clear to include the initial "!purge x" command too
 
     if (message.member.hasPermission("MANAGE_MESSAGES", false, true, true)){                        //Checks if the user has permissions to manage messages
 

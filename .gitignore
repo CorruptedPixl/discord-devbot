@@ -1,3 +1,7 @@
 DevBot V1/config.json
 github
 .gitignore
+DevBot V1/node_modules/
+DevBot V1/.eslintrc.json
+
+DevBot V1/package-lock.json

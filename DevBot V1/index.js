@@ -60,7 +60,7 @@ client.on('message', message => {
 		client.commands.get(command).run(client, message, args);
 	} catch (error) {
 		console.error(error);
-		message.reply('there was an error trying to execute that command!');
+		message.reply("There was an error trying to execute that command! Please let pixl know of this error");
 	}
 	
 	

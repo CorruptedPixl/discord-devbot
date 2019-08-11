@@ -5,24 +5,6 @@ const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
 
-// fs.readdir("./commands/", (err, files) => {
-	
-// 	if (err) console.log(err);
-
-// 	let jsfile = files.filter(f => f.split(".") .pop = "js");
-
-// 	if (jsfile.length <= 0) {
-// 		console.log("Couldn't find commands.");
-// 		return;
-// 	}
-
-// 	jsfile.forEach((file,amount) => {
-// 		let properties = require(`./commands/${file}`);
-// 		console.log(`${file} loaded!`);
-// 		client.commands.set(properties.help.name, properties);
-// 	});
-// });
-
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
@@ -63,14 +45,6 @@ client.on('message', message => {
 		message.reply("There was an error trying to execute that command! Please let pixl know of this error");
 	}
 	
-	
-	// let messageArray = message.content.split(" ");
-	// let cmd = messageArray[0];
-	// let args = messageArray.slice(1);
-  
-	// let commandfile = client.commands.get(cmd.slice(prefix.length));
-	// if(commandfile) commandfile.run(client,message,args);
-
 });
 
 

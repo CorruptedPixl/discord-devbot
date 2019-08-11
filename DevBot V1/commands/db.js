@@ -19,7 +19,8 @@ module.exports.run = async (client, message, args) => {
     console.log(arrayLength);
 
     if (arrayLength == 0){
-        
+        message.channel.bulkDelete(1);
+        message.channel.send(`\`Usage: ${prefix}db [arg1] [arg2] [arg3] etc... Min 1 argument expected.\``)
     }
 
     else if (arrayLength == 1){
@@ -81,5 +82,6 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
     name: "db",
-    description: `Use \`${prefix}db x y\` to post a link in chat to a specific product. For example \`${prefix}db grip op7p\``
+    description: `Use \`${prefix}db x y\` to post a link in chat to a specific product. For example \`${prefix}db grip op7p\``,
+    helpimage: "./commands/assets/db_help.png"
 }

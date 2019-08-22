@@ -6,3 +6,5 @@ DevBot V1/.eslintrc.json
 
 DevBot V1/package-lock.json
 DevBot V1/COMMAND_TEMPLATE
+DevBot V1/commands/assets/help_command_template.ai
+DevBot V1/commands/assets/

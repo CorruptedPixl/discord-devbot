@@ -45,7 +45,6 @@ module.exports.run = async (client, message, args) => {
             link = link + "shop/prism";
             message.channel.bulkDelete(1);
         }
-            // TODO IMPLEMENT PRISM YOU DIPSHIT 
 
         let dbEmbedLink = new Discord.RichEmbed()
         .setColor('#ffbb00')

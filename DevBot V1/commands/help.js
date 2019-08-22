@@ -5,15 +5,16 @@ const fs = require("fs");
 
 module.exports.run = async (client, message, args) => {
 
-    let commandName = args[0];
-    let command = require(`./${commandName}.js`);
-    let helpimage = command.help.helpimage
+    let commandName = args[0];      //Gets the command name from the first argument
+    let command = require(`./${commandName}.js`);       //Loads the command file because the "help description" data and image location is in that
+    let helpimage = command.help.helpimage;      //Gets the image path from the command file help secion
 
     try {
         if (fs.existsSync(helpimage)) {
             message.channel.send(command.help.description, { files: [`${command.help.helpimage}`] });
         }
         else {
+            message.channel.send(command.help.description);
             message.channel.send("Help image doesn't exist, dm Pixl asap!")
                 .then(msg => {
                     msg.delete(msgDeleteDelay);
@@ -28,5 +29,6 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
         name: "help",
-        description: `${prefix}help lists all available commands.`
+        description: `${prefix}help lists all available commands. Do ${prefix}help [command name] to get specific info about a command.`,
+        helpimage: "./commands/assets/help_help.png"
     }

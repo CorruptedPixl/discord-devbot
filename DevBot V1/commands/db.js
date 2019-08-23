@@ -51,15 +51,15 @@ module.exports.run = async (client, message, args) => {
         .setTitle(link)
         .setURL(link)
         .setDescription(link)
-        .setThumbnail('attachment://1_50FPS.gif')
+        .setThumbnail('attachment://50FPS.gif')
         .addField('Regular field title', 'Some value here')
         .addBlankField()
         .addField('Inline field title', 'Some value here', true)
         .addField('Inline field title', 'Some value here', true)
-        .attachFiles(['../DevBot V1/commands/assets/1_50FPS.gif'])
-        .setImage('attachment://1_50FPS.gif')
+        .attachFiles(['../DevBot V1/commands/assets/50FPS.gif'])
+        .setImage('attachment://50FPS.gif')
         .setTimestamp()
-        .setFooter('Some footer text here', 'attachment://./assets/1_50FPS.gif')
+        .setFooter('Some footer text here', 'attachment://./assets/50FPS.gif')
     
 
         message.channel.send(dbEmbedLink);

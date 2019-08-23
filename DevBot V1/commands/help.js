@@ -10,10 +10,10 @@ module.exports.run = async (client, message, args) => {
     let helpimage = command.help.helpimage;      //Gets the image path from the command file help secion
 
     try {
-        if (fs.existsSync(helpimage)) {
+        if (fs.existsSync(helpimage)) {     //Tests if the help image exists
             message.channel.send(command.help.description, { files: [`${command.help.helpimage}`] });
         }
-        else {
+        else {      //If the help 
             message.channel.send(command.help.description);
             message.channel.send("Help image doesn't exist, dm Pixl asap!")
                 .then(msg => {

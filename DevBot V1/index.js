@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const {prefix,token} = require('./config.json');
+const { prefix, token } = require('./config.json');
 const fs = require("fs");
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -16,11 +16,11 @@ for (const file of commandFiles) {
 client.once('ready', () => {
 	console.log('This bitch ready!');														//sends a message when the bot is ready
 
-	if (client.guilds.size === 1){															//prints the amount of servers it's connected to. Should never be more than 1
+	if (client.guilds.size === 1) {															//prints the amount of servers it's connected to. Should never be more than 1
 		console.log(`The bot is online in ${client.guilds.size} server!`);
 	}
-	else{
-	console.log(`The bot is online in ${client.guilds.size} servers!`);
+	else {
+		console.log(`The bot is online in ${client.guilds.size} servers!`);
 	}
 
 	client.user.setStatus("idle");
@@ -35,7 +35,7 @@ client.on('message', message => {
 	const args = message.content.slice(prefix.length).split(" ");
 	const command = args.shift().toLowerCase();
 
-	
+
 	if (!client.commands.has(command)) return;
 
 	try {
@@ -44,7 +44,7 @@ client.on('message', message => {
 		console.error(error);
 		message.reply("There was an error trying to execute that command! Please let pixl know of this error");
 	}
-	
+
 });
 
 

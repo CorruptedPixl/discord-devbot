@@ -1,12 +1,12 @@
-const Discord = require("discord.js");
-const { msgDeleteDelay } = require('../config.json');
-
 module.exports.run = async (client, message, args) => {
-    console.log("Ping command works!");
+    message.channel.bulkDelete(1);
+    console.log(`Ping is ${client.ping}!`);
     message.channel.send(`Pong! \nThe current ping is ${client.ping} ms`)
 
 }
 
 module.exports.help = {
-    name: "ping"
+    name: "ping",
+    description: `pings the bot and reports the... ping...`,
+    helpimage: "./commands/assets/ping-help.png"
 }

@@ -1,14 +1,15 @@
+
 # discord-devbot
+
 A custom built Discord bot using Discord.js
 
-## Why?
+## Why
 
 The point of this project is to improve my javascript skills and also get something functional out of it. I have a few different Discord servers that could use a bot so this is the perfect solution.
 
 ### Prerequisites
 
 This bot is made to run on server side js such as npm. If you want to run it you'll have to install it first.
-
 
 ### Installing
 

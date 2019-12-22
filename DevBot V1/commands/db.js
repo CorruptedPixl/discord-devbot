@@ -14,7 +14,7 @@ module.exports.run = async (client, message, args) => {
     }
 
 
-    else if (args.length > 0 && args.length < 3) {
+    else if (args.length > 0) {
 
         //!Below are the supported functions that handle certain db args
         const caseGrip = () => {                        //Set link to grip
@@ -38,7 +38,7 @@ module.exports.run = async (client, message, args) => {
         }
 
 
-        //!This handles the first argument. Handles it if found, if not, it just stops
+        //!This checks the first argument. Handles it if found, if not, it just stops
         switch (args[0]) {
             //Grip
             case "grip": caseGrip(); break;
@@ -63,13 +63,22 @@ module.exports.run = async (client, message, args) => {
 
 
         if (args[0] == "shipping" || args[0] == "ship") {                                                       //Checks for "shipping" as first arg, then searches the shipping array for any matches to the second arg and returns the first link found
-
             let matches;
-            if (args[1] != undefined) {
+            message.channel.bulkDelete(1);                                                                      //Deletes user's message
+
+            if (args[1] != undefined) {                                                                         //Checks for an argument
+
+                let isTextOnly = /^[A-Z]+$/i.test(args[1]);                                                     //Tests via a regex if the argument is only characters, not emoji's or slashes or numbers
+                if (!isTextOnly) {
+                    message.channel.send("Country codes and emoji's are not supported. Please type part of the country's name to search.")
+                        .then(msg => {
+                            msg.delete(msgDeleteDelay);
+                        });
+                }
+
                 matches = shippingArray.filter(s => s.includes(args[1].toString().toLowerCase()));              //Creates an array with all country's found that match part of the substring (arg1)
                 console.log(args[1].toString());
 
-                message.channel.bulkDelete(1);
                 console.log(matches);                                                                           //Used for debugging
 
                 if (matches.length > 0) {
@@ -86,7 +95,7 @@ module.exports.run = async (client, message, args) => {
                         .setFooter('dbrand.com', 'attachment://db-logo.png')
 
                     message.channel.send(shippingEmbed);
-                } else {
+                } else if (isTextOnly) {
                     link = link + "shipping";
 
                     let shippingEmbedNotFound = new Discord.RichEmbed()
@@ -127,7 +136,7 @@ module.exports.run = async (client, message, args) => {
 
     else {
         message.channel.bulkDelete(1);
-        message.channel.send(`Invalid command, please try again ${message.member}`)
+        message.channel.send(`Invalid command, please try again ${message.member} \nCurrent commands are !db grip, support, shipping, skins and prism.`)
             .then(msg => {
                 msg.delete(msgDeleteDelay)
             });

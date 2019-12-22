@@ -36,7 +36,12 @@ client.on('message', message => {
 	const command = args.shift().toLowerCase();
 
 
-	if (!client.commands.has(command)) return;
+	if (!client.commands.has(command)) {
+		message.channel.bulkDelete(1);
+		message.channel.send(`Unknown command ${message.member}. Please see !help for all commands.`);
+		return;
+	}
+
 
 	try {
 		client.commands.get(command).run(client, message, args);

@@ -1,10 +1,10 @@
 //Fix these bugs
-    - !help list all commands
+    - !help list all commands           __OK
     - catch module not found error      __OK
 
     - db shipping country not found     __OK
-    - no numbers allowed                
-    - no other chars allowed            
+    - no numbers allowed                __OK
+    - no other chars allowed            __OK
     - change to switch case!!           __OK
 
 
@@ -29,4 +29,5 @@ __________________________________________
 --Find a place to host the bot.
     Glitch.com?
     dbrand?
+    Heroku?
     Alex?

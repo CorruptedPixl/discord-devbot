@@ -24,7 +24,7 @@ Download the source code and run the index.js file. It'll load all the necessary
 ```
 
 
-To verify that the bot is online, run the index.js file and you should see the Discord bot appear online on your server.
+To verify that the bot is online, run the index.js file with ``nodemon .``and you should see the Discord bot appear online on your server.
 Test it out by running the ping command: ``!ping``
 
 If you see ``Pong! The current ping is 148 ms`` the bot works!

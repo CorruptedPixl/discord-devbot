@@ -1,4 +1,4 @@
-module.exports.run = async (client, message, args) => {
+module.exports.run = async (client, message) => {
     message.channel.bulkDelete(1);
     console.log(`Ping is ${client.ping}!`);
     message.channel.send(`Pong! \nThe current ping is ${client.ping} ms`)

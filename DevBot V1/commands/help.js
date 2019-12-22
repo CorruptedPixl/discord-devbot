@@ -9,9 +9,12 @@ module.exports.run = async (client, message, args) => {
     let command;                                                                            //Defines the variable but doesn't assign anything yet
 
     if (args === undefined || args.length == 0) {                                           //Checks if the args array is empty, aka if the user just posted "!help" with no specific command as arg
-        message.channel.send(`Yo, this should show all commands but *someone* hasn't finished coding that yet... Please use !help (command name) Current commands are ban, db, help, kick, ping, purge and report`);
-        //TODO IF NO ARG, LIST ALL HELP COMMANDS
-        return;
+
+        let commandFiles = fs.readdirSync(__dirname).filter(file => file.endsWith('.js'));  //Reads all files in the command folder (__dirname is current folder) that end in .js, aka all commands
+        commandFiles = commandFiles.map(file => file.split('.js')[0]);                      //Removes the .js extention
+
+        message.channel.send(`Use \`!help command\` for specific help! \nCurrent commands are \`${commandFiles.join(`, `)}\``) //Sends a list of all commands
+        return;                                                                             //!Return statement!
     } else if (fs.existsSync(`./${commandName}.js`)) {
         command = require(`./${commandName}.js`);                                           //Loads the command file because the "help description" data and image location is in that
     } else {                                                                                //If the command doesn't exist, send an error message
@@ -20,7 +23,7 @@ module.exports.run = async (client, message, args) => {
             .then(msg => {
                 msg.delete(msgDeleteDelay);
             });
-        return
+        return                                                                              //!Return statement!
     }
 
 

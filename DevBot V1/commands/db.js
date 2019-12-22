@@ -100,7 +100,7 @@ module.exports.run = async (client, message, args) => {
 
                     let shippingEmbedNotFound = new Discord.RichEmbed()
                         .setTitle(`Check shipping times here!`)
-                        .setDescription(`Country not found.\nYou can also [view all shipping destinations here](https://dbrand.com/shipping)`)
+                        .setDescription(`Country not found.\nYou can [view all shipping destinations here](https://dbrand.com/shipping)`)
                         .setURL(`${link}`)
                         .setColor('#ffbb00')
                         .setTimestamp()

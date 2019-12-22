@@ -1,4 +1,11 @@
 //Fix these bugs
+    - !help list all commands
+    - catch module not found error      __OK
+
+    - db shipping country not found     __OK
+    - no numbers allowed                
+    - no other chars allowed            
+    - change to switch case!!           __OK
 
 
 //Add these commands
@@ -7,7 +14,13 @@
 
 
 //Other features
+    - ADD HELP IMAGES FOR EVERY COMMAND
+
     - Music
+    - USER RAN COMMAND
+    - general debug info for every action
+
+    - Logging
 
 
 __________________________________________

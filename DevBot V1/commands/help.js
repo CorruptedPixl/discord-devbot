@@ -15,8 +15,8 @@ module.exports.run = async (client, message, args) => {
 
         message.channel.send(`Use \`!help command\` for specific help! \nCurrent commands are \`${commandFiles.join(`, `)}\``) //Sends a list of all commands
         return;                                                                             //!Return statement!
-    } else if (fs.existsSync(`./${commandName}.js`)) {
-        command = require(`./${commandName}.js`);                                           //Loads the command file because the "help description" data and image location is in that
+    } else if (fs.existsSync(__dirname + `/${commandName}.js`)) {
+        command = require(__dirname + `/${commandName}.js`);                                           //Loads the command file because the "help description" data and image location is in that
     } else {                                                                                //If the command doesn't exist, send an error message
         message.channel.bulkDelete(1);
         message.channel.send(`Selected command doesn't exist.`)

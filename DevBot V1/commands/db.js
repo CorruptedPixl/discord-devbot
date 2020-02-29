@@ -38,48 +38,24 @@ module.exports.run = async (client, message, args) => {
         }
 
 
-        //!This checks the first argument. Handles it if found, if not, it just stops
-        switch (args[0]) {
-            //Grip
-            case "grip": caseGrip(); break;
-            case "g": caseGrip(); break;
-            //Support
-            case "support": caseSupport(); break;
-            case "help": caseSupport(); break;
-            case "contant": caseSupport(); break;
-            case "h": caseSupport(); break;
-            case "c": caseSupport(); break;
-            //Skins
-            case "skins": caseSkin(); break;
-            case "skin": caseSkin(); break;
-            case "s": caseSkin(); break;
-            //Prism
-            case "prism": casePrism(); break;
-            case "p": casePrism(); break;
-
-            default:
-                break;
-        }
-
-
-        if (args[0] == "shipping" || args[0] == "ship") {                                                       //Checks for "shipping" as first arg, then searches the shipping array for any matches to the second arg and returns the first link found
+        const caseShipping = () => {
             let matches;
             message.channel.bulkDelete(1);                                                                      //Deletes user's message
 
             if (args[1] != undefined) {                                                                         //Checks for an argument
 
-                let isTextOnly = /^[A-Z]+$/i.test(args[1]);                                                     //Tests via a regex if the argument is only characters, not emoji's or slashes or numbers
+                let isTextOnly = /^[A-Z-]+$/i.test(args[1]);                                                    //Tests via a regex if the argument is only characters, not emoji's or slashes or numbers
                 if (!isTextOnly) {
                     message.channel.send("Country codes and emoji's are not supported. Please type part of the country's name to search.")
                         .then(msg => {
                             msg.delete(msgDeleteDelay);
                         });
                 }
+                const searchTerms = args.slice(1, 3).join("-");                                       //combines arg[1] and arg[2] to also find "united-states" and such
+                // console.log(searchTerms);                                                                      //Used for debug
 
-                matches = shippingArray.filter(s => s.includes(args[1].toString().toLowerCase()));              //Creates an array with all country's found that match part of the substring (arg1)
-                console.log(args[1].toString());
-
-                console.log(matches);                                                                           //Used for debugging
+                matches = shippingArray.filter(s => s.includes(searchTerms.toString().toLowerCase()));          //Creates an array with all country's found that match part of the substring (arg1)
+                // console.log(matches);                                                                          //Used for debugging
 
                 if (matches.length > 0) {
                     link = `https://dbrand.com/shipping/${matches[0]}`;
@@ -111,6 +87,39 @@ module.exports.run = async (client, message, args) => {
             }
         }
 
+
+        //!This checks the first argument. Handles it if found, if not, it just stops
+        switch (args[0]) {
+            //Grip
+            case "grip": caseGrip(); break;
+            case "g": caseGrip(); break;
+            //Support
+            case "support": caseSupport(); break;
+            case "help": caseSupport(); break;
+            case "contant": caseSupport(); break;
+            case "h": caseSupport(); break;
+            case "c": caseSupport(); break;
+            //Skins
+            case "skins": caseSkin(); break;
+            case "skin": caseSkin(); break;
+            case "s": caseSkin(); break;
+            //Prism
+            case "prism": casePrism(); break;
+            case "p": casePrism(); break;
+
+            //Larger commands
+            case "shipping": caseShipping(); break;
+            case "ship": caseShipping(); break;
+
+            default:
+                break;
+        }
+
+
+        // if (args[0] == "shipping" || args[0] == "ship") {                                                       //Checks for "shipping" as first arg, then searches the shipping array for any matches to the second arg and returns the first link found
+
+        // }
+
         let dbEmbedLink = new Discord.RichEmbed()
 
             .setTitle(link)
@@ -126,6 +135,14 @@ module.exports.run = async (client, message, args) => {
             .setImage('attachment://db-logo.png')
             .setTimestamp()
             .setFooter('dbrand.com', 'attachment://db-logo.png')
+
+        // .setTitle(`Check item here!`)
+        // .setDescription(`${link}`)
+        // .setURL(`${link}`)
+        // .setColor('#ffbb00')
+        // .setTimestamp()
+        // .attachFiles(['../DevBot V1/commands/assets/db-logo.png'])
+        // .setFooter('dbrand.com', 'attachment://db-logo.png')
 
 
         if (args[0] != "shipping" && args[0] != "ship") {

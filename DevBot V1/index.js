@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const { prefix, token } = require('./config.json');
+const { prefix, token, msgDeleteDelay } = require('./config.json');
 const fs = require("fs");
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -38,13 +38,18 @@ client.on('message', message => {
 
 	if (!client.commands.has(command)) {
 		message.channel.bulkDelete(1);
-		message.channel.send(`Unknown command ${message.member}. Please see !help for all commands.`);
+		message.channel.send(`Unknown command ${message.member}. Please see !help for all commands.`)
+			.then(msg => {
+				msg.delete(msgDeleteDelay);
+			});
 		return;
 	}
 
 
 	try {
 		client.commands.get(command).run(client, message, args);
+		console.log(`${message.member.user.tag}${message.member} ran: ${message}`);
+
 	} catch (error) {
 		console.error(error);
 		message.reply("There was an error trying to execute that command! Please let pixl know of this error");

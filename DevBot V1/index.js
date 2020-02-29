@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
-const { prefix, token, msgDeleteDelay } = require('./config.json');
+require('dotenv').config();
+const { prefix, msgDeleteDelay } = require('./config.json');
 const fs = require("fs");
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -57,4 +58,4 @@ client.on('message', message => {
 
 });
 
-client.login(token);
+client.login();

@@ -18,11 +18,15 @@ Download the source code and run the index.js file. It'll load all the necessary
 ```json
 {
     "prefix": "!",
-    "token": "DISCORD BOT API TOKEN",
     "msgDeleteDelay": 5000
 }
 ```
 
+I've changed the way the bot loads the token to be more secure. This is accomplished by using a .env file. As with config.json, this is not included but should be in the same directory as index.js. Here's an example of what your .env file should look like.
+
+```.env
+CLIENT_TOKEN=YourTokenHere
+```
 
 To verify that the bot is online, run the index.js file with ``nodemon .``and you should see the Discord bot appear online on your server.
 Test it out by running the ping command: ``!ping``

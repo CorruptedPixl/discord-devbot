@@ -5,7 +5,7 @@ A custom built Discord bot using Discord.js
 
 ## Why
 
-The point of this project is to improve my javascript skills and also get something functional out of it. I have a few different Discord servers that could use a bot so this is the perfect solution.
+The point of this project is to improve my JavaScript skills and also get something functional out of it. I have a few different Discord servers that could use a bot so this is the perfect solution.
 
 ### Prerequisites
 
@@ -35,4 +35,4 @@ If you see ``Pong! The current ping is 148 ms`` the bot works!
 
 ## Built With
 
-* [Discord.js](https://discord.js.org/#/) - The javascript framework used
+* [Discord.js](https://discord.js.org/#/) - The JavaScript framework used

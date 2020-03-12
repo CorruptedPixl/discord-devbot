@@ -51,11 +51,18 @@ client.on('message', message => {
 		client.commands.get(command).run(client, message, args);
 		console.log(`${message.member.user.tag}${message.member} ran: ${message}`);
 
+		const embed = new Discord.RichEmbed()
+			.setColor(0xffbb00)
+			.setAuthor(message.member.user.tag, message.author.displayAvatarURL)
+			.setDescription(`ran: ${message}`)
+			.setTimestamp()
+			.setFooter(`ID: ${message.member.id}`, `${message.guild.iconURL}`);
+		client.channels.get('687651767944609813').send(embed);
+
 	} catch (error) {
 		console.error(error);
 		message.reply("There was an error trying to execute that command! Please let pixl know of this error");
 	}
-
 });
 
 client.login();

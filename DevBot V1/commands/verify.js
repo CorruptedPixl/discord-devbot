@@ -1,17 +1,15 @@
+/* eslint-disable no-unused-vars */
 const Discord = require("discord.js");
-const {
-    msgDeleteDelay,
-    prefix
-} = require('../config.json');
+const { msgDeleteDelay, prefix } = require('../config.json');
 
-module.exports.run = async (client, message, args) => {
+module.exports.run = async (client, message) => {
     const verifyTimeoutDelay = 60000;   //Sets the timeout of the command (default: 60000 aka 1 min)
 
     //Define emojis
     const emojiMax = await client.emojis.get("671045011487326228");
-    const emojiHal = await client.emojis.get("520742867933724676");
-    const emojiPyramid = await client.emojis.get("682715410289786887");
-    const emojiCube = await client.emojis.get("664627160551522317");
+    // const emojiHal = await client.emojis.get("520742867933724676");
+    // const emojiPyramid = await client.emojis.get("682715410289786887");
+    // const emojiCube = await client.emojis.get("664627160551522317");
     const emojiMaxBad = client.emojis.find(emoji => emoji.name === "max_flipoff");
 
     message.reply(`Almost there! **Click the** ${emojiMax} **emote on your message!**`)

@@ -38,7 +38,7 @@ client.on('message', message => {
 
 
 	if (!client.commands.has(command)) {
-		message.channel.bulkDelete(1);
+		message.delete();
 		message.channel.send(`Unknown command ${message.member}. Please see !help for all commands.`)
 			.then(msg => {
 				msg.delete(msgDeleteDelay);

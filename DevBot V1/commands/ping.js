@@ -1,7 +1,7 @@
 module.exports.run = async (client, message) => {
-    message.channel.bulkDelete(1);
+    message.delete();
     console.log(`Ping is ${client.ping}!`);
-    message.channel.send(`Pong! \nThe current ping is ${client.ping} ms`)
+    message.channel.send(`Pong! \nThe current ping is ${Math.floor(client.ping)} ms`)
 
 }
 

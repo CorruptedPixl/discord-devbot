@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const { msgDeleteDelay, prefix } = require('../config.json');
-const { shippingArray, howtoArray } = require('../commands/command-config/sitemap-arrays.json');
+const { shippingArray, /*howtoArray*/ } = require('../commands/command-config/sitemap-arrays.json');
 
 module.exports.run = async (client, message, args) => {
 
@@ -9,7 +9,7 @@ module.exports.run = async (client, message, args) => {
 
 
     if (args.length == 0) {                                                                                     //Deletes user message and sends an error if they don't give any args
-        message.channel.bulkDelete(1);
+        message.delete();
         message.channel.send(`No argument. Please use !db *argument*`)
     }
 
@@ -19,28 +19,28 @@ module.exports.run = async (client, message, args) => {
         //!Below are the supported functions that handle certain db args
         const caseGrip = () => {                        //Set link to grip
             link = link + "shop/grip/#grip-devices";
-            message.channel.bulkDelete(1);
+            message.delete();
         }
 
         const caseSupport = () => {                     //Set link to support
             link = link + "contact";
-            message.channel.bulkDelete(1);
+            message.delete();
         }
 
         const caseSkin = () => {                        //Set link to skins
             link = link + "shop/skins";
-            message.channel.bulkDelete(1);
+            message.delete();
         }
 
         const casePrism = () => {                       //Set link to Prism
             link = link + "shop/prism";
-            message.channel.bulkDelete(1);
+            message.delete();
         }
 
 
         const caseShipping = () => {
             let matches;
-            message.channel.bulkDelete(1);                                                                      //Deletes user's message
+            message.delete();                                                                      //Deletes user's message
 
             if (args[1] != undefined) {                                                                         //Checks for an argument
 
@@ -84,9 +84,21 @@ module.exports.run = async (client, message, args) => {
                         .setFooter('dbrand.com', 'attachment://db-logo.png')
                     message.channel.send(shippingEmbedNotFound);
                 }
+            } else {
+                message.channel.send("Please type *(part)* of the county you want to ship to after the command. **!db ship belgium**")
+                    .then(msg => {
+                        msg.delete(msgDeleteDelay);
+                    });
             }
         }
 
+        const caseUnknown = () => {
+            message.reply("Unknown argument. Please choose from `grip, support, help, skins, prism or shipping`")
+                .then(message.delete())
+                .then(msg => {
+                    msg.delete(msgDeleteDelay);
+                });
+        }
 
         //!This checks the first argument. Handles it if found, if not, it just stops
         switch (args[0]) {
@@ -96,7 +108,7 @@ module.exports.run = async (client, message, args) => {
             //Support
             case "support": caseSupport(); break;
             case "help": caseSupport(); break;
-            case "contant": caseSupport(); break;
+            case "contact": caseSupport(); break;
             case "h": caseSupport(); break;
             case "c": caseSupport(); break;
             //Skins
@@ -112,13 +124,9 @@ module.exports.run = async (client, message, args) => {
             case "ship": caseShipping(); break;
 
             default:
-                break;
+                caseUnknown(); break;
         }
 
-
-        // if (args[0] == "shipping" || args[0] == "ship") {                                                       //Checks for "shipping" as first arg, then searches the shipping array for any matches to the second arg and returns the first link found
-
-        // }
 
         let dbEmbedLink = new Discord.RichEmbed()
 
@@ -152,7 +160,7 @@ module.exports.run = async (client, message, args) => {
     }
 
     else {
-        message.channel.bulkDelete(1);
+        message.delete();
         message.channel.send(`Invalid command, please try again ${message.member} \nCurrent commands are !db grip, support, shipping, skins and prism.`)
             .then(msg => {
                 msg.delete(msgDeleteDelay)

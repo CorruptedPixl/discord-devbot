@@ -28,7 +28,9 @@ I've changed the way the bot loads the token to be more secure. This is accompli
 CLIENT_TOKEN=YourTokenHere
 ```
 
-To verify that the bot is online, run the index.js file with ``nodemon .``and you should see the Discord bot appear online on your server.
+To verify that the bot is online, run ``npm start``and you should see the Discord bot appear online on your server.
+Note: this requires nodemon to be installed so be sure that you have all dependencies installed if you run into any issues.
+
 Test it out by running the ping command: ``!ping``
 
 If you see ``Pong! The current ping is 148 ms`` the bot works!

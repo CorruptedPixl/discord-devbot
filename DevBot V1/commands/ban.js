@@ -3,11 +3,21 @@ const Discord = require("discord.js");
 const { msgDeleteDelay, prefix } = require('../config.json');
 
 module.exports.run = async (client, message, args) => {
-    message.channel.bulkDelete(1);
-    message.channel.send(`This module isn't finished yet. Bug Pixl about it or something. (I head money is a good motivator ;) )`)
-        .then(msg => {
-            msg.delete(msgDeleteDelay);
-        });
+    if (!message.member.hasPermission("BAN_MEMBERS")) {message.reply('nah bro you\'re not worthy of the hammer')}
+
+
+    var user
+
+    if (message.mentions.users.first()) {
+        user = message.mentions.users.first()
+    }
+    else {
+        return message.channel.send('that user doesn\'t exist')
+    }
+    if (!message.guild.member(user).bannable) { return message.reply('You can\'t ban this user because you the bot has not sufficient permissions!') } 
+    message.guild.ban(user)
+    message.channel.send(`✅ ${user.tag} has been successfully banned!`)
+
 }
 
 module.exports.help = {

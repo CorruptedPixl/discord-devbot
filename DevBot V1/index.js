@@ -60,3 +60,4 @@ client.on('message', message => {
 
 
 client.login('NTc3MTMwNDQxODI0NTM0NTQ5.Xr1l9g.6-tNbhw1W56_13M-vW-74P0WtmM');
+//nice try tho :wink:

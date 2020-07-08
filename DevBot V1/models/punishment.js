@@ -1,7 +1,7 @@
 // This will be used by bans, mutes and kicks to make it easier. punishment type will be stated in "type"
 const mongoose = require("mongoose");
 
-const punishmentSchema = mongoose.Schema({
+const punishmentdbSchema = mongoose.Schema({
 
     _id: mongoose.Schema.Types.ObjectId,
     type: String,
@@ -11,4 +11,4 @@ const punishmentSchema = mongoose.Schema({
     
 });
 
-module.exports = mongoose.model("punishment", punishmentSchema)
+module.exports = mongoose.model("punishmentdb", punishmentdbSchema)

@@ -1,10 +1,16 @@
-const Discord = require('discord.js');
+// const { Client, Collection } = require("discord.js"); require('dotenv').config() const bot = new Client(); ["aliases", "commands"].forEach(x => bot[x] = new Collection()); ["console", "command", "event"].forEach(x => require(`./handlers/${x}`)(bot)); bot.login(process.env.TOKEN);
+
+// const Discord = require('discord.js');
+const { Client, Collection, MessageEmbed } = require("discord.js");	// Require less but can't be enabled rn since other code depends on Discord to be imported.
+
 require('dotenv').config();
 const { prefix, msgDeleteDelay } = require('./config.json');
 const fs = require("fs");
-const client = new Discord.Client();
-client.commands = new Discord.Collection();
+const client = new Client();
+client.commands = new Collection();
 
+// ["aliases", "commands"].forEach(x => client[x] = new Collection());
+// ["console", "command", "event"].forEach(x => require(`./handlers/${x}`)(client));
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
@@ -51,7 +57,7 @@ client.on('message', message => {
 		client.commands.get(command).run(client, message, args);
 		console.log(`${message.member.user.tag}${message.member} ran: ${message}`);
 
-		const embed = new Discord.RichEmbed()
+		const embed = new MessageEmbed()
 			.setColor(0xffbb00)
 			.setAuthor(message.member.user.tag, message.author.displayAvatarURL)
 			.setDescription(`ran: ${message}`)

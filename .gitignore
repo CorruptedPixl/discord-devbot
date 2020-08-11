@@ -1,8 +1,0 @@
-*
-!.gitignore
-!README.md
-!DevBot V1/index.js
-!DevBot V1/commands/*.js
-!DevBot V1/commands/command-config/sitemap-arrays.json
-
-!DevBotV2/index.js

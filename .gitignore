@@ -1,12 +1,8 @@
-.gitignore
-github
-TODO.txt
-.env
-DevBot V1/config.json
-DevBot V1/node_modules/
-DevBot V1/.eslintrc.json
-DevBot V1/COMMAND_TEMPLATE
-DevBot V1/package-lock.json
-DevBot V1/package.json
-DevBot V1/commands/assets/
-.vscode/settings.json
+*
+!.gitignore
+!README.md
+!DevBot V1/index.js
+!DevBot V1/commands/*.js
+!DevBot V1/commands/command-config/sitemap-arrays.json
+
+!DevBotV2/index.js
